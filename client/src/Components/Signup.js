@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {register} from './UserAxios';
+//import {register} from './UseAxios';
+import Axios from 'axios';
 
 export default class Signup extends Component{
     constructor(props){
@@ -18,7 +19,7 @@ export default class Signup extends Component{
     }
     handleChange = (e) =>{
         this.setState({
-            [e.target.name]:[e.target.value]
+            [e.target.name]:e.target.value
         })
         
     }
@@ -33,12 +34,17 @@ export default class Signup extends Component{
             username:this.state.username,
             password:this.state.password
         }
-        console.log(this.state);
-        register(newUser)
-        .then(res => {
-            console.log("registered");
-          })
-    }
+        console.log("gfdgdfg",newUser);
+        //console.log(this.state);
+        Axios.post('http://localhost:5000/signup', {firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        mobilenumber:this.state.mobilenumber,
+        email:this.state.email,
+        country:this.state.country,
+        username:this.state.username,
+        password:this.state.password})
+            .then(res => console.log(res.data));
+    }   
     render(){
         return(
             <div>

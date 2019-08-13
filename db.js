@@ -1,0 +1,1 @@
+exports.getDburl = () => `mongodb://localhost:27017/BadmintonData`;
