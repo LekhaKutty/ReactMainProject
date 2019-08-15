@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, 'routes')));
 
 app.use('/signup',require("./routes/signup.js"));
+app.use('/login',require("./routes/login.js"));
 
 const server = app.listen(5000, () => {
     console.log(`Express is running on port ${server.address().port}`);

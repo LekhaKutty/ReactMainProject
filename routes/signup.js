@@ -6,15 +6,12 @@ const {body ,validationResult } = require('express-validator');
 
 const BadmintonData = require('../models/registerdata');
 
-const mongo = require('mongodb');
-
+/*const mongo = require('mongodb');
 const {getDburl} = require("../db.js");
-
 const URL = getDburl();
-
 mongo.connect(URL, { useNewUrlParser: true }, (err, db) => {
   database = db.db("BadmintonData");
-});
+});*/
 
 router.post('/',[
   body('firstname')
