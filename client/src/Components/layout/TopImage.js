@@ -10,7 +10,6 @@ const TopImage = () =>{
     padding: "20px",
     textAlign: "center",
     color:"white"
-    
   }
   return(
     

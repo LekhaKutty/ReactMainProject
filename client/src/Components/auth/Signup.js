@@ -6,6 +6,7 @@ export default class Signup extends Component{
     constructor(props){
         super(props);
         this.state = {
+            isLoading:true,
             firstname: null,
             lastname:null,
             mobilenumber:null,
@@ -14,7 +15,7 @@ export default class Signup extends Component{
             username: null,
             password: null,
             passwordRepeat: null,
-            password_has_error:false
+            error:false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,7 +23,7 @@ export default class Signup extends Component{
     }
     handleChange = (e) =>{
         const { name, value } = e.target
-
+        
         this.setState({
             [name] : value
         },()=>{
@@ -40,7 +41,9 @@ export default class Signup extends Component{
     }
     handleSubmit = (e) =>{
         e.preventDefault();
-        
+        this.setState({
+            isLoading:true
+        });
         const newUser = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -49,43 +52,74 @@ export default class Signup extends Component{
             country:this.state.country,
             username:this.state.username,
             password:this.state.password,
+            passwordRepeat:this.state.passwordRepeat
         }
         //console.log("gfdgdfg",newUser);
         //console.log(this.state);
         Axios.post('http://localhost:5000/signup', newUser)
-            .then(res => console.log(res.data));
-    }   
+            .then(res =>{
+                console.log(res.data);
+                if(res.err ){
+                    this.setState({
+                        error:true
+                    })
+                }else{
+                    this.setState({
+                        isLoading:true,
+                        firstname: null,
+                        lastname:null,
+                        mobilenumber:null,
+                        email: null,
+                        country:null,
+                        username: null,
+                        password: null,
+                        passwordRepeat: null,
+                        error:false
+                    })
+                    this.props.history.push(`/login`);
+                }
+
+            })
+    }    
     render(){
         return(
-            <div className="container">
-            <div class="col s12 m6">
-                <div className="card  lighten-5">
-                  <div class="card-content black-text">
-                    <span class="card-title">Register</span>
-                    <form onSubmit={this.handleSubmit}>
-                        <input style={{width:"50%"}} type="text" placeholder="First Name" name = "firstname" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="text" placeholder="Last Name" name = "lastname" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="text" placeholder="Mobile Number" name = "mobilenumber" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="email" placeholder="Email" name = "email" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="text" placeholder="Country" name = "country" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="text" placeholder="Username" name = "username" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="password" placeholder="********" name = "password" onChange={this.handleChange}/>
-                        <br></br>
-                        <input style={{width:"50%"}} type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" onChange={this.handleChange}/>
-                        <br></br>
-                        <button class="btn waves-effect waves-light indigo darken-4">Register
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </form>
+            <div className="container" style={{ marginTop: "100px",width:"50%"}} >
+                <div className="col s6 m6">
+                    <div className="card  lighten-5">
+                        <div className="card-content black-text">
+                            <h5 className="grey-text text-darken-3">Sign Up</h5>
+                            <form className="white" onSubmit={this.handleSubmit}>
+                                <div className="input-field">
+                                    <label htmlFor="firstname" style={{fontSize:"1rem",color:"black"}}>First Name</label>
+                                    <input type="text" name='firstname' onChange={this.handleChange} />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="lastname" style={{fontSize:"1rem",color:"black"}}>Last Name</label>
+                                    <input type="text" name='lastname' onChange={this.handleChange} />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="mobilenumber" style={{fontSize:"1rem",color:"black"}}>Mobile Number</label>
+                                    <input type="text"  name='mobilenumber' onChange={this.handleChange} />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="email" style={{fontSize:"1rem",color:"black"}}>Email</label>
+                                    <input type="email" name='email' onChange={this.handleChange} />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="password" style={{fontSize:"1rem",color:"black"}}>Password</label>
+                                    <input type="password" name='password' onChange={this.handleChange} />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="passwordRepeat" style={{fontSize:"1rem",color:"black"}}>Repeat Password</label>
+                                    <input type="password" name='passwordRepeat' onChange={this.handleChange} />
+                                </div>
+                                <button className="btn waves-effect waves-light indigo darken-4" style={{ marginTop: "3%"}}>Register
+                                    <i className="material-icons right">send</i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             
         )

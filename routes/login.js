@@ -4,6 +4,8 @@ const router = express.Router();
 
 const BadmintonData = require('../models/registerdata');
 
+const bcrypt = require('bcrypt');
+
 router.post('/',(req,res)=>{
     let email = req.body.email;
     let password = req.body.password;
@@ -16,14 +18,15 @@ router.post('/',(req,res)=>{
             err = 'Incorrect email or password;'
         }
         else{
-            user.comparePassword(password, (err, isMatch)=>{
+            bcrypt.compare(password, user.password).then(isMatch => {
                 if(isMatch){
                     req.session.email = email;
                     req.session.userId = user._id;
-                    return res.send('successfully loged in');
+                    console.log('session' + req.session.userId);
+                    return res.send({'sessionId':req.session.userId});
                 }
                 else{
-                    return res.send('Not yet login');
+                    return res.send('/login');
                 }
             })
         }

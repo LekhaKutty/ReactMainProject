@@ -1,11 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const SignedInLinks = () =>{
+const SignedInLinks = (props) =>{
+  console.log(props);
   return(
     <ul className="right">
       {/*<li><NavLink to='/'>Home</NavLink> </li>*/}
-      <li><NavLink to='/'>Log Out</NavLink> </li>
+      <li><a >Log Out</a> </li>
       <li><NavLink to='/'>Messages</NavLink> </li>
       <li><NavLink to='/'className='btn btn-floating pink lighten-1'>NN</NavLink> </li>
     </ul>
