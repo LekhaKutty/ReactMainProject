@@ -23,7 +23,7 @@ router.post('/',(req,res)=>{
                     req.session.email = email;
                     req.session.userId = user._id;
                     console.log('session' + req.session.userId);
-                    return res.send({'sessionId':req.session.userId});
+                    return res.send({'sessionId':req.session.userId,'email':req.session.email});
                 }
                 else{
                     return res.send('/login');

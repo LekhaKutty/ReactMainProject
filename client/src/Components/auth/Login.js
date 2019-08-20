@@ -33,14 +33,13 @@ export default class Login extends Component{
         Axios.post('http://localhost:5000/login',loginUser)
             .then(res => {
               //session Id is sending to parent component 
-              this.props.handleSessionID(res.data.sessionId);
+              this.props.handleSessionID(res.data.sessionId,res.data.email);
 
               this.props.history.push('/')
 
             });
     }
-
-     
+         
     render(){
         return(
             <div className="container" style={{ marginTop: "100px",width:"45%"}}>

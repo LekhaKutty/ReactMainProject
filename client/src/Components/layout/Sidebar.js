@@ -17,7 +17,7 @@ class Sidebar extends Component {
                 <div id="sidebarMenu">
                     <ul className="sidebarMenuInner">
                         
-                        <li><NavLink to='/'>Players</NavLink></li>
+                        <li><NavLink to='/players'>Players</NavLink></li>
                         <li><NavLink to='/'>Games</NavLink></li>
                         <li><NavLink to='/'>Results</NavLink></li>
                         <li><NavLink to='/'>News</NavLink></li>

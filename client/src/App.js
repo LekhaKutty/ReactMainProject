@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Background from './images/headerback.jpg';
 import Signup from './Components/auth/Signup';
 import Login from './Components/auth/Login';
 import Navbar from './Components/layout/Navbar';
-
-import Axios from 'axios';
 import Sidebar from './Components/layout/Sidebar';
+import Players from './Components/projectmain/Players';
 
 let imagestyle = {
   width: "100%", 
@@ -24,15 +23,17 @@ export default class App extends Component {
     super()
     this.state = {
       session: '',
+      email:'',
       login: false
     }
   }
-  handlehereSessionId = (sessionId) =>{
-    console.log("From parent " + sessionId);
+  handlehereSessionId = (sessionId,email) =>{
+    console.log("From parent " + sessionId + email);
     if(sessionId){
       const id = sessionId
       this.setState({
         session: id,
+        email:email,
         login: true
       })
       //console.log(this.state)
@@ -46,6 +47,11 @@ export default class App extends Component {
       login: false
     })
   }
+  /*handlePlayersSession = () =>{
+    if(login !== false){
+
+    }
+  }*/
   render(){
     return (
       
@@ -56,12 +62,19 @@ export default class App extends Component {
             </div>
             < Navbar propslogin={this.state} logout={this.handleLogOut}/>
             < Sidebar />
-            < Route 
-                path='/login' 
-                render={(props) => <Login {...props} handleSessionID={this.handlehereSessionId} />}
-            />
-            < Route path='/signup' component={Signup} />
-            < Route path='/logout' />
+            <Switch>
+              < Route exact path='/' />
+              < Route 
+                  path='/login' 
+                  render={(props) => <Login {...props} handleSessionID={this.handlehereSessionId} />}
+              />
+              < Route path='/signup' component={Signup} />
+              < Route path='/logout' />
+              < Route 
+                  path='/players'
+                  render={(props) => <Players {...props} Session={this.state} />}
+              />
+            </Switch>
             
         </div>
       </BrowserRouter>

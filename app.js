@@ -32,11 +32,11 @@ app.use(session({
 }));*/
 app.use(cors({
     origin: 'http://localhost:3000',
-    'allowedHeaders': ['sessionId', 'Content-Type'],
-    'exposedHeaders': ['sessionId'],
+    
     'origin': '*',
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
     'preflightContinue': false
+    
 }));
 
 app.use(bodyParser.json());
@@ -46,6 +46,7 @@ app.use('/', express.static(path.join(__dirname, 'routes')));
 app.use('/signup',require("./routes/signup.js"));
 app.use('/login',require("./routes/login.js"));
 app.use('/logout',require("./routes/logout.js"));
+app.use('/players',require("./routes/players.js"));
 
 const server = app.listen(5000, () => {
     console.log(`Express is running on port ${server.address().port}`);

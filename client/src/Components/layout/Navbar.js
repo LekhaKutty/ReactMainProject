@@ -12,7 +12,7 @@ const Navbar = (props) =>{
     <div className="navbar">
       <nav className="nav-wrapper  indigo darken-4 z-depth-2">
           <div className="container">
-              <Link to='/' className="brand-logo left">Badminton Gaming</Link>
+              {/*<Link to='/' className="brand-logo left">Badminton Gaming</Link>*/}
               
               {console.log(links)}
               {links}
