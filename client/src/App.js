@@ -1,11 +1,23 @@
-import React, {Component} from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React, {Component} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import Signup from './Components/auth/Signup'
-import Login from './Components/auth/Login'
-import TopImage from './Components/layout/TopImage'
-import Navbar from './Components/layout/Navbar'
+import Background from './images/headerback.jpg';
+import Signup from './Components/auth/Signup';
+import Login from './Components/auth/Login';
+import Navbar from './Components/layout/Navbar';
+
 import Axios from 'axios';
+import Sidebar from './Components/layout/Sidebar';
+
+let imagestyle = {
+  width: "100%", 
+  fontSize: "28px",
+  backgroundImage: `url(${Background})`,
+  height: "175px",
+  padding: "20px",
+  textAlign: "center",
+  color:"white"
+}
 
 export default class App extends Component {
   constructor() {
@@ -39,19 +51,18 @@ export default class App extends Component {
       
       <BrowserRouter>
         <div className="App">
-          <div className="conatiner">
-            
-            < TopImage />
-            < Navbar propslogin={this.state}/>
+            <div style={imagestyle}>
+              <h1 className="center" >Badminton Gaming</h1>
+            </div>
+            < Navbar propslogin={this.state} logout={this.handleLogOut}/>
+            < Sidebar />
             < Route 
                 path='/login' 
-                
                 render={(props) => <Login {...props} handleSessionID={this.handlehereSessionId} />}
             />
             < Route path='/signup' component={Signup} />
             < Route path='/logout' />
             
-          </div>
         </div>
       </BrowserRouter>
       

@@ -1,32 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
+import './sidebar.css';
 
-const Sidebar = (props) =>{
-  console.log(props)
-  let {session,login} = props.propslogin;
-
-  const links = (login === true) ? < SignedInLinks /> : < SignedOutLinks />
-  
-  return(
-      <div className="row">
-          <div className="container">
-              <ul className="side-nav" id = "slide-out">
-                  
-              </ul>
-          </div>
-      </div>
-
-    {/*<div className="navbar-fixed">
-      <nav className="nav-wrapper  indigo darken-4 z-depth-2">
-          <div className="container">
-              <Link to='/' className="brand-logo left">Badminton Gaming</Link>
-              
-              {console.log(links)}
-              {links}
-          </div>
-      </nav>
-    </div>*/}
-  )
+class Sidebar extends Component {
+    
+    render() {
+        return (
+            <div>
+                <div className="header"></div>
+                <input type="checkbox" className="openSidebarMenu" id="openSidebarMenu"></input>
+                <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
+                    <div className="spinner diagonal part-1"></div>
+                    <div className="spinner horizontal"></div>
+                    <div className="spinner diagonal part-2"></div>
+                </label>
+                <div id="sidebarMenu">
+                    <ul className="sidebarMenuInner">
+                        
+                        <li><NavLink to='/'>Players</NavLink></li>
+                        <li><NavLink to='/'>Games</NavLink></li>
+                        <li><NavLink to='/'>Results</NavLink></li>
+                        <li><NavLink to='/'>News</NavLink></li>
+                    </ul>
+                </div>
+               
+            </div>
+        )
+    }
 }
 
-export default Sidebar;
+export default Sidebar
