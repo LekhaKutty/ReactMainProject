@@ -27,6 +27,7 @@ export default class App extends Component {
       login: false
     }
   }
+ 
   handlehereSessionId = (sessionId,email) =>{
     console.log("From parent " + sessionId + email);
     if(sessionId){
@@ -36,22 +37,17 @@ export default class App extends Component {
         email:email,
         login: true
       })
-      //console.log(this.state)
-    }else{
-      //console.log(this.state)
+      
     }
   }
+
   handleLogOut = () =>{
     this.setState({
       session: '',
       login: false
     })
-  }
-  /*handlePlayersSession = () =>{
-    if(login !== false){
-
-    }
-  }*/
+  } 
+ 
   render(){
     return (
       

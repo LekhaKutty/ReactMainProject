@@ -14,6 +14,7 @@ body {
     margin: 0 auto;
     width: 10%;
     max-width: 10%;
+    
     box-shadow: none;
     background-color: #FC466B;
     
@@ -42,11 +43,12 @@ body {
 #sidebarMenu {
     height: 100%;
     position: fixed;
+    display:inline-block;
     left: 0;
-    width: 10%;
+    width: 15%;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg,#131010 0%, #2f49ce 100%); 
+    background: linear-gradient(180deg,#4d3838 0%, #2f49ce 100%); 
 }
 .sidebarMenuInner{
     margin:0;
