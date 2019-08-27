@@ -12,15 +12,12 @@ const auth = (req,res,next) => {
         res.reddirect("/");
     }
 }
-router.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+
 router.get('/', (req,res)=>{
-    //console.log(req.session);
-    //res.send('it works');
+    console.log("from players " + req.session.userId);
+    
     const { userId, email } = req.session;
+    
     BadmintonData.find({},function(err,docs){
         if(err){
             console.log(err);
@@ -28,7 +25,6 @@ router.get('/', (req,res)=>{
         }
         else{
             //console.log(docs);
-            //res.render('players', {ID: userId, users: docs, name:username});
             res.status(200).send(docs);
             
         }

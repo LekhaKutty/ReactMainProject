@@ -52,7 +52,7 @@ export default class Login extends Component{
                             <label htmlFor="email" style={{fontSize:"1rem",color:"black"}}>Email</label>
                             <input type="email" name="email" onChange={this.handleChange} />
                         </div>
-                       
+                    
                         <div className="input-field">
                             <label htmlFor="password" style={{fontSize:"1rem",color:"black"}}>Password</label>
                             <input type="password" name='password' onChange={this.handleChange} />
@@ -60,7 +60,6 @@ export default class Login extends Component{
                         <button className="btn waves-effect waves-light indigo darken-4" style={{ marginTop: "3%"}}>Login
                             <i className="material-icons right">send</i>
                         </button>
-                        
                     </form>
                   </div>
                 </div>

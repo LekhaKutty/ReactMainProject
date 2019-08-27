@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Axios from 'axios';
 
 import Background from './images/headerback.jpg';
 import Signup from './Components/auth/Signup';
@@ -27,7 +28,7 @@ export default class App extends Component {
       login: false
     }
   }
- 
+   
   handlehereSessionId = (sessionId,email) =>{
     console.log("From parent " + sessionId + email);
     if(sessionId){
